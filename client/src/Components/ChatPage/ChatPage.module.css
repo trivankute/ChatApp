@@ -1,0 +1,72 @@
+.chatBox{
+    width:400px;
+    height:400px;
+    font-size:16px;
+    border:1px solid black;
+    position:relative;
+    border-radius:4px;
+}
+.chatShowing{
+    width:100%;
+    height:380px;
+    background-image: url('https://scontent.fsgn2-4.fna.fbcdn.net/v/t1.6435-1/180867081_2919616028282594_3665352780591598452_n.jpg?stp=dst-jpg_p120x120&_nc_cat=101&ccb=1-7&_nc_sid=7206a8&_nc_ohc=HSJBgghGK_QAX_seSXN&_nc_ht=scontent.fsgn2-4.fna&oh=00_AT_wsx5LMrolayfPeTnvULzG0SHlqxPNm9L8CT7mQMgYvA&oe=63157441');
+    background-size:cover;
+    background-repeat:no-repeat;
+    padding-bottom:25px;
+    position:relative;
+    overflow-y: scroll;
+}
+
+.chatShowing::-webkit-scrollbar-track
+{
+	background-color: #F5F5F5;
+}
+
+.chatShowing::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.chatShowing::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+	border: 2px solid #555555;
+}
+
+.chatInput{
+    width:calc( 100% - 65px);
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+.chatBtn{
+    position:absolute;
+    bottom:0;
+    right:0;
+}
+.chatTextRow_left{
+    width:95%;
+    display:flex;
+    justify-content: flex-start;
+}
+.chatTextRow_right{
+    width:95%;
+    display:flex;
+    justify-content: flex-end;
+}
+.chatTextBox{
+    word-wrap: break-word;
+    max-width:150px;
+    min-height: 20px;
+    background-color:white;
+    border-radius:2px;
+    margin-left:10px;
+    padding:4px;
+}
+.chatTextRow_right .chatTextBox{
+    border-bottom-right-radius: 15px;
+}
+.chatTextRow_left .chatTextBox{
+    border-bottom-left-radius: 15px;
+}

@@ -1,0 +1,20 @@
+* {
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.big_container{
+    height:100vh;
+    width:100%;
+}
+.onlineOrOffline{
+    width:20px;
+    height:20px;
+    border-radius:20px;
+    margin:10px;
+}
+.forChatSignal{
+    min-width:25px;
+    height:20px;
+    border-radius:20px;
+    margin:10px;
+}
