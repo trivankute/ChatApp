@@ -2,7 +2,7 @@ import {memo, useState} from 'react'
 import LeftColumn from './LeftColumn'
 import RightColumn from './RightColumn'
 import {Button} from 'react-bootstrap'
-function OffcanvasContent({user,setUser,socket}:{socket:any,user:any,setUser:any})
+function OffcanvasContent({toggleOffCanvas,user,setUser,socket}:{toggleOffCanvas:any,socket:any,user:any,setUser:any})
 {
     const [left, setLeft] = useState(true)
     return (
@@ -17,9 +17,9 @@ function OffcanvasContent({user,setUser,socket}:{socket:any,user:any,setUser:any
             </div>
             <div  className='w-100' style={{padding:0}}>
             {left?
-            <LeftColumn user={user} setUser={setUser} socket={socket}/>
+            <LeftColumn user={user} setUser={setUser} socket={socket} />
             :
-            <RightColumn user={user} setUser={setUser} socket={socket}/>
+            <RightColumn user={user} setUser={setUser} socket={socket} toggleOffCanvas={toggleOffCanvas}/>
             }
             </div>
         </>

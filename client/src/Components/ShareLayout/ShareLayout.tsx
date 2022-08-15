@@ -11,7 +11,16 @@ import OffcanvasContent from './OffcanvasContent'
 import {memo, useEffect, useState} from 'react'
 function ShareLayout({user,setUser, socket}:{socket:any,user:any,setUser:any})
 {
-    const [expand, setExpand] = useState(true)
+    const [expand, setExpand] = useState(()=>{
+      if(window.innerWidth<800)
+        {
+          return false
+        }
+        else
+        {
+          return true
+        }
+    })
     const [show, setShow] = useState(false);
     const toggleOffCanvas = () => {
       setShow((show) => !show);
@@ -19,9 +28,13 @@ function ShareLayout({user,setUser, socket}:{socket:any,user:any,setUser:any})
     useEffect(()=>{
       function handleResize(){
         if(window.innerWidth<800)
-        setExpand(false)
+        {
+          setExpand(false)
+        }
         else
-        setExpand(true)
+        {
+          setExpand(true)
+        }
       }
       window.addEventListener('resize',handleResize)
       return ()=>{
@@ -84,7 +97,7 @@ function ShareLayout({user,setUser, socket}:{socket:any,user:any,setUser:any})
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body style={{padding:0}}>
-            <OffcanvasContent user={user} setUser={setUser} socket={socket}/>
+            <OffcanvasContent toggleOffCanvas={toggleOffCanvas} user={user} setUser={setUser} socket={socket}/>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
     </Container>
@@ -101,7 +114,7 @@ function ShareLayout({user,setUser, socket}:{socket:any,user:any,setUser:any})
     </div>
     {expand && 
     <div className="col-3" style={{padding:0}}>
-      <RightColumn user={user} setUser={setUser} socket={socket}/>
+      <RightColumn user={user} setUser={setUser} socket={socket} toggleOffCanvas=""/>
     </div>
     }
     </Row>

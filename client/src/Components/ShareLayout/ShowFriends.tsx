@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import {Button, Card, Modal} from 'react-bootstrap'
 import styles from './ShowFriends.module.css'
 import url from '../../serverUrl'
-function ShowFriends({user,setUser, socket}:{socket:any, user:any,setUser:any})
+function ShowFriends({user,setUser, socket, toggleOffCanvas=""}:{socket:any, user:any,setUser:any, toggleOffCanvas:any})
 {
     const [deleteFriend, setDeleteFriend] = useState<any>(null)
     const [smShow, setSmShow] = useState(false);
@@ -53,7 +53,13 @@ function ShowFriends({user,setUser, socket}:{socket:any, user:any,setUser:any})
                     return (
                         <Card className={styles.card} key={index} style={{marginBottom:10}} >
                             <div className='w-100 h-100 d-flex'>
-                            <Card.Body style={{minWidth:50}} onClick={()=>{navigate(`/chatrooms/${item.username}/${item.roomID}`)}}>
+                            <Card.Body style={{minWidth:50}} onClick={()=>{
+                                navigate(`/chatrooms/${item.username}/${item.roomID}`)
+                                if(toggleOffCanvas!=="")
+                                {
+                                    toggleOffCanvas()
+                                }
+                                }}>
                                 <div style={{display:'flex', flexDirection:'column', justifyContent:'space-between', alignItems:'center'}}>
                                         <h3>
                                         {item.username}
@@ -71,7 +77,9 @@ function ShowFriends({user,setUser, socket}:{socket:any, user:any,setUser:any})
                                     }
                                 </div>
                             </Card.Body >
-                                <Button  size='sm'  variant="danger" onClick={() => {setSmShow(true); setDeleteFriend({username:item.username, roomID:item.roomID})}}>
+                                <Button  size='sm'  variant="danger" onClick={() => {
+                                    setSmShow(true); setDeleteFriend({username:item.username, roomID:item.roomID})
+                                    }}>
                                     Delete
                                 </Button>
                             </div>

@@ -1,20 +1,19 @@
-import {useEffect, useState, memo} from 'react'
-import {useNavigate, useLocation} from 'react-router-dom'
-const Error = ({user}:{user:any}) =>{
-    const [error, setError] = useState("")
-    const [errNum, setErrNum] = useState(400)
-    const location = useLocation()
+import {useEffect, memo} from 'react'
+import {useNavigate} from 'react-router-dom'
+const Error = () =>{
     const navigate = useNavigate()
     useEffect(()=>{
-        if(user)
-        {
-            navigate(`/${location.pathname}`)
+        let thisThing = setTimeout(()=>{
+            navigate('/')
+        },3000)
+        return () => {
+            clearTimeout(thisThing)
         }
-    },[user])
+    },[])
     return (
         <>
-            <h1>Error page</h1>
-            <h3>Error: {error} {errNum}</h3>
+            <h1>Error page not found</h1>
+            <h3>Error: 404</h3>
             <h3>You will comeback soon</h3>
         </>
     )

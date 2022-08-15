@@ -1,5 +1,5 @@
 import {useNavigate} from 'react-router-dom'
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import {Button, Card, Modal} from 'react-bootstrap'
 import axios from 'axios'
 import Event_bus from '../Event_bus'

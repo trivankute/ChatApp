@@ -1,6 +1,6 @@
 import {memo} from 'react'
 import ShowFriends from './ShowFriends'
-function RightColumn({user,setUser, socket}:{socket:any, user:any,setUser:any})
+function RightColumn({user,setUser, socket, toggleOffCanvas=""}:{socket:any, user:any,setUser:any, toggleOffCanvas:any})
 {
     return (
         <div style={{backgroundColor:"violet", display:'block'}} 
@@ -15,7 +15,7 @@ function RightColumn({user,setUser, socket}:{socket:any, user:any,setUser:any})
             {user&&
             <>
             <h2>{user.username} friends:</h2>
-            <ShowFriends user={user} setUser={setUser} socket={socket}/>
+            <ShowFriends user={user} setUser={setUser} socket={socket} toggleOffCanvas={toggleOffCanvas}/>
             <h3>Click onto your friend to go to chat.</h3>
             </>
             }

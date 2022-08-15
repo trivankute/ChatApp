@@ -11,6 +11,7 @@ import ChatRooms from './Components/ChatRooms/ChatRooms'
 import ChatPage from './Components/ChatPage/ChatPage'
 import Profile from './Components/Profile/Profile'
 import ShareLayout from './Components/ShareLayout/ShareLayout'
+import Loading from './Components/Loading/Loading'
 // axios
 import axios from 'axios'
 // flash and globalState
@@ -100,21 +101,83 @@ function App() {
   return (
       <>
       <Routes>
-          <Route path='/' element={<ShareLayout user={user} setUser={setUser} socket={socket}></ShareLayout>}>
-            <Route index element={<Home user={user} setUser={setUser} socket={socket} setForCheckOnline={setForCheckOnline}/>}/>
-            <Route path='/register' element={<Register handleFlash={handleFlash} setUser={setUser} socket={socket}/>}/>
-            <Route path='/login' element={<Login handleFlash={handleFlash} setUser={setUser} socket={socket}/>}/>
-            {
-            user &&
+          <Route path='/' element={
+          localStorage.getItem('chatappusername') ?
+          user ?
+          <ShareLayout user={user} setUser={setUser} socket={socket}></ShareLayout>
+          :
+          <Loading user={user}/>
+          :
+          <ShareLayout user={user} setUser={setUser} socket={socket}></ShareLayout>
+          }>
+            <Route index element={
+            <Home user={user} setUser={setUser} socket={socket} setForCheckOnline={setForCheckOnline}/>
+            }/>
+            <Route path='/register' element={
+            <Register handleFlash={handleFlash} setUser={setUser} socket={socket}/>
+            }/>
+
+            <Route path='/login' element={
+            <Login handleFlash={handleFlash} setUser={setUser} socket={socket}/>
+            }/>
+
+            <Route path='/logout' element={
             <>
-            <Route path='/logout' element={<Logout handleFlash={handleFlash}  user={user} setUser={setUser} socket={socket}/>}/>
-            <Route path='/profile/:profileID' element={<Profile user={user} setUser={setUser} socket={socket}/>}/>
-            <Route path='/chatrooms' element={<ChatRooms user={user} socket={socket}/>}/>
-              <Route path='/chatrooms/:friendName/:chatPageID' element={<ChatPage user={user} socket={socket} setUser={setUser}/>}/>
+              {
+                user ?
+                <Logout handleFlash={handleFlash}  user={user} setUser={setUser} socket={socket}/>
+                :
+                localStorage.getItem('chatappusername') ?
+                <Loading user={user}/>
+                :
+                <Error/>
+              }
             </>
-            }
+            }/>
+
+            <Route path='/profile/:profileID' element={
+            <>
+              {
+                user ?
+                <Profile user={user} setUser={setUser} socket={socket}/>
+                :
+                localStorage.getItem('chatappusername') ?
+                <Loading user={user}/>
+                :
+                <Error/>
+              }
+            </>
+            }/>
+
+            <Route path='/chatrooms' element={
+            <>
+              {
+                user ?
+                <ChatRooms user={user} socket={socket}/>
+                :
+                localStorage.getItem('chatappusername') ?
+                <Loading user={user}/>
+                :
+                <Error/>
+              }
+            </>
+            }/>
+
+            <Route path='/chatrooms/:friendName/:chatPageID' element={
+            <>
+              {
+                user ?
+                <ChatPage user={user} socket={socket} setUser={setUser}/>
+                :
+                localStorage.getItem('chatappusername') ?
+                <Loading user={user}/>
+                :
+                <Error/>
+              }
+            </>
+            }/>
           </Route>
-          <Route path='/*' element={<Error user={user}/>}/>
+          <Route path='/*' element={<Error/>}/>
       </Routes>
       </>
   );
