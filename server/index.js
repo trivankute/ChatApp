@@ -12,14 +12,14 @@ const io = new socket_io.Server(httpServer, {
   cors: {
     
     // origin: "http://localhost:3000",
-    origin: "https://spiffy-pasca-a36c3f.netlify.app",
+    origin: "*",
     methods:['GET',"POST"]
   },
 });
 
 app.use(cors({
   // origin: "http://localhost:3000", // allow to server to accept request from different origin
-  origin: "https://spiffy-pasca-a36c3f.netlify.app",
+  origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // allow session cookie from browser to pass through
 }))
