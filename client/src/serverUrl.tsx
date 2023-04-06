@@ -1,3 +1,3 @@
-const url = "https://smallchatapp123.herokuapp.com/"
+const url = "https://chatapp-trivandeptraivodichvutru.onrender.com"
 // const url = "http://localhost:3001/"
 export default url
